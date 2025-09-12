@@ -1,3 +1,5 @@
+pub mod lang;
+
 use anyhow::Result;
 use rabex_env::Environment;
 use rabex_env::game_files::GameFiles;

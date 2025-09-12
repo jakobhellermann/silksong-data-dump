@@ -422,7 +422,6 @@ dependencies = [
 [[package]]
 name = "rabex-env"
 version = "0.1.0"
-source = "git+https://github.com/jakobhellermann/rabex-env#c6ea716799e2782007a44fb9a04860900fbfa5d5"
 dependencies = [
  "anyhow",
  "elsa",

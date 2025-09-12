@@ -9,6 +9,7 @@ use rabex_env::handle::{ScriptFilter, ScriptFilterContains, SerializedFileHandle
 use rabex_env::{Environment, rabex};
 use serde::{Deserialize, Serialize};
 use serde_repr::Deserialize_repr;
+use silksong_data_dump::lang::{self, LocalizedString};
 
 fn main() -> Result<()> {
     let env = silksong_data_dump::detect_game()?.context("Couldn't find silksong game files")?;
@@ -16,26 +17,50 @@ fn main() -> Result<()> {
     let out = Path::new("out");
     std::fs::create_dir_all(out)?;
 
-    let data_assets = env
-        .addressables_build_folder()?
-        .unwrap()
-        .join("dataassets_assets_assets/dataassets");
+    let languages = lang::get_language_keys(&env)?;
+    let lang = &languages["en"];
+
+    let data_assets = Path::new("dataassets_assets_assets/dataassets");
+
+    /*let (x, x_data) = env.load_addressables_bundle_content(
+        data_assets.join("collectables/collectableitems.bundle"),
+    )?;
+    let x = SerializedFileHandle::new(&env, &x, &x_data);
+    for mb in x.objects_of::<MonoBehaviour>()? {
+        let script = mb.mono_script().context("1")?.unwrap();
+        dbg!(script.full_name());
+    }*/
 
     dump_csv::<IntReference>(&env, out, &data_assets, "costs", &"CostReference")?;
     dump_csv::<IntReference>(&env, out, &data_assets, "damages", &"DamageReference")?;
-    dump_csv::<CollectableItemRelicType>(
+    dump_csv_with::<CollectableItemRelicType, _>(
         &env,
         out,
         &data_assets,
         "collectables/collectableitems",
-        &"CollectableItemRelicType",
+        &ScriptFilterContains("CollectableItemRelicType"),
+        |_, item| {
+            Ok(CollectableItemData {
+                name: item.name,
+                displayName: item.typeName.get(lang).to_owned(),
+                rewardAmount: item.rewardAmount,
+            })
+        },
     )?;
-    dump_csv::<EnemyJournalRecord>(
+    dump_csv_with::<EnemyJournalRecord, _>(
         &env,
         out,
         &data_assets,
         "enemyjournal/journalrecords",
         &"EnemyJournalRecord",
+        |_, item| {
+            Ok(EnemyJournalRecordData {
+                name: item.displayName.get(lang).to_owned(),
+                killsRequired: item.killsRequired,
+                recordType: item.recordType,
+                requiredType: item.requiredType,
+            })
+        },
     )?;
     dump_csv_with::<ToolItem, _>(
         &env,
@@ -43,9 +68,13 @@ fn main() -> Result<()> {
         &data_assets,
         "tools/toolitems",
         &ScriptFilterContains("Tool"),
-        |_, item| {
+        |file, item| {
+            let display_name = file
+                .deref_read_optional(item.countKey)?
+                .map(|x| x.displayName.get(lang).to_owned())
+                .filter(|name| *name != "Ruined Tool");
             Ok(ToolItemData {
-                name: item.name,
+                name: display_name.unwrap_or(item.name),
                 damageFlags: item.damageFlags,
                 poisonDamageTicks: item.poisonDamageTicks,
                 replenishResource: item.replenishResource,
@@ -61,6 +90,11 @@ fn main() -> Result<()> {
         "questsystem/quests",
         &"Quest",
         |file, item| {
+            let name = item
+                .invItemAppendDesc
+                .try_get(lang)
+                .map(ToOwned::to_owned)
+                .unwrap_or(item.name);
             let reward = file
                 .deref_optional(item.rewardItem)?
                 .map(|x| x.read())
@@ -69,7 +103,7 @@ fn main() -> Result<()> {
                 .unwrap_or_default();
 
             Ok(QuestData {
-                name: item.name,
+                name,
                 // getTargetCondition: item.getTargetCondition.to_string(),
                 condition: item.playerDataTest.to_string(),
                 rewardCount: item.rewardCount,
@@ -191,8 +225,12 @@ fn main() -> Result<()> {
                 None
             };
 
+            let display_name = item.displayName.get(lang).to_owned();
+            let internal_name = item.name;
+
             Ok(ShopItemData {
-                name: item.name,
+                name: display_name,
+                internalName: internal_name,
                 cost: cost_ref.map(|cost| cost.value).unwrap_or(item.cost),
                 item: required_item.map(From::from),
                 conditions,
@@ -261,12 +299,21 @@ enum PurchaseType {
 struct EnemyJournalRecord {
     #[serde(rename(deserialize = "m_Name"))]
     name: String,
+    displayName: LocalizedString,
     killsRequired: i32,
     // isAlwaysUnlocked: u8, always 0
     // isRequiredForCompletion: u8, always 0
     recordType: RecordTypes,
     requiredType: RequiredTypes,
     // completeOthers
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+struct EnemyJournalRecordData {
+    name: String,
+    killsRequired: i32,
+    recordType: RecordTypes,
+    requiredType: RequiredTypes,
 }
 
 #[derive(Debug, Serialize, Deserialize_repr)]
@@ -324,6 +371,7 @@ enum SpecialDamageType {
 struct ShopItem {
     #[serde(rename(deserialize = "m_Name"))]
     name: String,
+    displayName: LocalizedString,
     costReference: TypedPPtr<IntReference>,
     cost: i32,
     requiredItem: TypedPPtr<CollectibleItem>,
@@ -456,6 +504,15 @@ struct QuestTest {
 struct CollectableItemRelicType {
     #[serde(rename(deserialize = "m_Name"))]
     name: String,
+    typeName: LocalizedString,
+    typeDescription: LocalizedString,
+    rewardAmount: i32,
+}
+
+#[derive(Debug, Serialize)]
+struct CollectableItemData {
+    name: String,
+    displayName: String,
     rewardAmount: i32,
 }
 
@@ -463,6 +520,8 @@ struct CollectableItemRelicType {
 struct Quest {
     #[serde(rename(deserialize = "m_Name"))]
     name: String,
+    giveNameOverride: LocalizedString,
+    invItemAppendDesc: LocalizedString,
     canTurnInAtBoard: u8,
     getTargetCondition: PlayerDataTest,
     persistentBoolTests: Vec<serde_json::Value>,
@@ -480,12 +539,7 @@ struct Quest {
 struct QuestTarget {
     Count: i32,
     AltTest: PlayerDataTest,
-    ItemName: LocalizedName,
-}
-#[derive(Debug, Deserialize)]
-struct LocalizedName {
-    Sheet: String,
-    Key: String,
+    ItemName: LocalizedString,
 }
 
 #[derive(Debug, Deserialize)]
@@ -494,6 +548,7 @@ struct ToolItem {
     name: String,
     damageFlags: ToolDamageFlags,
     poisonDamageTicks: i32,
+    countKey: TypedPPtr<SavedItem>,
     // zapDamageTicks: i32, always 0
     replenishResource: ReplenishResources,
     // replenishUsage: i32, always 0
@@ -524,11 +579,26 @@ enum ReplenishResources {
     Shard,
 }
 
+#[derive(Debug, Deserialize)]
+struct CollectableRelic {
+    #[serde(rename(deserialize = "m_Name"))]
+    name: String,
+    description: LocalizedString,
+    eventConditionItem: TypedPPtr<SavedItem>,
+}
+#[derive(Debug, Deserialize)]
+struct SavedItem {
+    #[serde(rename(deserialize = "m_Name"))]
+    name: String,
+    displayName: LocalizedString,
+}
+
 // csv types
 
 #[derive(Debug, Serialize)]
 struct ShopItemData {
     name: String,
+    internalName: String,
     cost: i32,
     item: Option<String>,
     conditions: Option<String>,
