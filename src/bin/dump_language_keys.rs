@@ -7,7 +7,7 @@ fn main() -> Result<()> {
     let env = silksong_data_dump::detect_game()?.context("Couldn't find silksong game files")?;
 
     let out = Path::new("out/languages");
-    let _ = std::fs::remove_dir_all(&out);
+    let _ = std::fs::remove_dir_all(out);
 
     let lang = lang::get_language_keys(&env)?;
     for (lang, sheets) in lang {
