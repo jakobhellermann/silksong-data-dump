@@ -4,13 +4,13 @@ use std::fs::File;
 use std::path::Path;
 
 use anyhow::{Context, Result};
-use rabex::objects::TypedPPtr;
+use rabex_env::Environment;
 use rabex_env::handle::{ScriptFilter, ScriptFilterContains, SerializedFileHandle};
-use rabex_env::{Environment, rabex};
 use serde::{Deserialize, Serialize};
 
+use silksong_data_dump::enums::*;
+use silksong_data_dump::generated::*;
 use silksong_data_dump::lang;
-use silksong_data_dump::types::*;
 
 fn main() -> Result<()> {
     let env = silksong_data_dump::detect_game()?.context("Couldn't find silksong game files")?;
@@ -23,8 +23,14 @@ fn main() -> Result<()> {
 
     let data_assets = Path::new("dataassets_assets_assets/dataassets");
 
-    dump_csv::<IntReference>(&env, out, data_assets, "costs", &"CostReference")?;
-    dump_csv::<IntReference>(&env, out, data_assets, "damages", &"DamageReference")?;
+    dump_csv::<IntReference, IntReferenceData>(&env, out, data_assets, "costs", &"CostReference")?;
+    dump_csv::<IntReference, IntReferenceData>(
+        &env,
+        out,
+        data_assets,
+        "damages",
+        &"DamageReference",
+    )?;
     dump_csv_with::<CollectableItemRelicType, _>(
         &env,
         out,
@@ -33,7 +39,7 @@ fn main() -> Result<()> {
         &ScriptFilterContains("CollectableItemRelicType"),
         |_, item| {
             Ok(CollectableItemData {
-                name: item.name,
+                name: item.m_Name,
                 displayName: item.typeName.get(lang).to_owned(),
                 rewardAmount: item.rewardAmount,
             })
@@ -49,12 +55,12 @@ fn main() -> Result<()> {
             Ok(EnemyJournalRecordData {
                 name: item.displayName.get(lang).to_owned(),
                 killsRequired: item.killsRequired,
-                recordType: item.recordType,
-                requiredType: item.requiredType,
+                recordType: item.recordType.try_into().unwrap(),
+                requiredType: item.requiredType.try_into().unwrap(),
             })
         },
     )?;
-    dump_csv_with::<ToolItem, _>(
+    dump_csv_with::<ToolItemBasic, _>(
         &env,
         out,
         data_assets,
@@ -63,13 +69,19 @@ fn main() -> Result<()> {
         |file, item| {
             let display_name = file
                 .deref_read_optional(item.countKey)?
-                .map(|x| x.displayName.get(lang).to_owned())
+                .and_then(|x| x.displayName)
+                .map(|name| name.get(lang).to_owned())
                 .filter(|name| *name != "Ruined Tool");
-            assert!(matches!(item.replenishUsage, ReplenishUsage::Percentage));
+            assert!(matches!(
+                item.replenishUsage.try_into().unwrap(),
+                ReplenishUsage::Percentage
+            ));
             assert_eq!(item.replenishUsageMultiplier, 1.0);
             let replenishCost = if item.baseStorageAmount != 0
-                && !matches!(item.replenishResource, ReplenishResources::None)
-            {
+                && !matches!(
+                    item.replenishResource.try_into().unwrap(),
+                    ReplenishResources::None
+                ) {
                 format!(
                     "1/{} * 40 = {:.1}",
                     item.baseStorageAmount,
@@ -79,9 +91,9 @@ fn main() -> Result<()> {
                 "".to_string()
             };
             Ok(ToolItemData {
-                name: display_name.unwrap_or(item.name),
-                r#type: item.r#type,
-                damageFlags: item.damageFlags,
+                name: display_name.unwrap_or(item.m_Name),
+                r#type: item.r#type.try_into().unwrap(),
+                damageFlags: item.damageFlags.try_into().unwrap(),
                 poisonDamageTicks: item.poisonDamageTicks,
                 SilkRequired: item.usageOptions.SilkRequired,
                 replenishCost,
@@ -99,10 +111,10 @@ fn main() -> Result<()> {
                 .invItemAppendDesc
                 .try_get(lang)
                 .map(ToOwned::to_owned)
-                .unwrap_or(item.name);
+                .unwrap_or(item.m_Name);
             let reward = file
                 .deref_read_optional(item.rewardItem)?
-                .map(|x| x.name)
+                .map(|x| x.m_Name)
                 .unwrap_or_default();
 
             Ok(QuestData {
@@ -118,13 +130,11 @@ fn main() -> Result<()> {
                     .iter()
                     // .map(|x| format!("{} {},", x.AltTest.to_string(), x.Count))
                     .map(|x| {
-                        let counter = TypedPPtr::<Named>::deserialize(&x["Counter"]).unwrap();
                         let item = file
-                            .deref_read_optional(counter)
+                            .deref_read_optional(x.Counter)
                             .unwrap()
-                            .map(|x| x.name)
+                            .map(|x| x.m_Name)
                             .unwrap_or_default();
-                        let x = QuestTarget::deserialize(x).unwrap();
                         if x.AltTest.TestGroups.is_empty() {
                             format!("{} {} ", x.Count, item)
                         } else {
@@ -144,13 +154,13 @@ fn main() -> Result<()> {
         |file, item| {
             let damage_cooldown = file.deref_read_optional(item.damageCooldownTimer)?;
             Ok(DamageTagData {
-                name: item.name,
+                name: item.m_Name,
                 damageAmount: item.damageAmount,
                 damageCooldownTimer: damage_cooldown.map(|cooldown| format!("{}s", cooldown.delay)),
                 delayPerHit: item.delayPerHit,
                 isToolDamage: item.isToolDamage,
-                nailElement: item.nailElement,
-                specialDamageType: item.specialDamageType,
+                nailElement: item.nailElement.try_into().unwrap(),
+                specialDamageType: item.specialDamageType.try_into().unwrap(),
                 startDelay: item.startDelay,
                 totalHitLimit: item.totalHitLimit,
             })
@@ -175,7 +185,7 @@ fn main() -> Result<()> {
                 let mut quests_str = String::new();
                 for quest_test in &item.questsAppearConditions {
                     let quest = file.deref(quest_test.Quest)?.read()?;
-                    write!(&mut quests_str, "'{}'", quest.name)?;
+                    write!(&mut quests_str, "'{}'", quest.m_Name)?;
                     let m = |b: u8| match b != 0 {
                         true => "",
                         false => "not ",
@@ -217,13 +227,13 @@ fn main() -> Result<()> {
             };
 
             let display_name = item.displayName.get(lang).to_owned();
-            let internal_name = item.name;
+            let internal_name = item.m_Name;
 
             Ok(ShopItemData {
                 name: display_name,
                 internalName: internal_name,
                 cost: cost_ref.map(|cost| cost.value).unwrap_or(item.cost),
-                item: required_item.map(From::from),
+                item: required_item.map(|item| item.m_Name),
                 conditions,
                 quest: quest_requirement,
             })
@@ -233,14 +243,20 @@ fn main() -> Result<()> {
     Ok(())
 }
 
-fn dump_csv<T: Debug + for<'de> Deserialize<'de> + Serialize>(
+fn dump_csv<T, U>(
     env: &Environment,
     out: &Path,
     data_assets: &Path,
     name: &str,
     script: &dyn ScriptFilter,
-) -> Result<()> {
-    dump_csv_with::<T, T>(env, out, data_assets, name, script, |_, val| Ok(val))
+) -> Result<()>
+where
+    T: for<'de> Deserialize<'de>,
+    U: From<T> + Serialize + Debug,
+{
+    dump_csv_with::<T, U>(env, out, data_assets, name, script, |_, val| {
+        Ok(U::from(val))
+    })
 }
 
 fn dump_csv_with<T, U>(
@@ -263,7 +279,11 @@ where
         out.join(name.file_name().unwrap()).with_extension("csv"),
     )?);
     for value in file.scripts::<T>(script)? {
-        let value = f(file.reborrow(), value.read()?)?;
+        let value = f(
+            file.reborrow(),
+            value.read().context(name.display().to_string())?,
+        )
+        .with_context(|| format!("Mapping {}", name.display()))?;
         // println!("{:?}", value);
 
         writer.serialize(value)?;
@@ -334,6 +354,21 @@ struct QuestData {
     condition: String,
 }
 
+#[derive(Debug, Serialize)]
+pub struct IntReferenceData {
+    pub name: String,
+    pub value: i32,
+}
+impl From<IntReference> for IntReferenceData {
+    fn from(value: IntReference) -> Self {
+        IntReferenceData {
+            name: value.m_Name,
+            value: value.value,
+        }
+    }
+}
+
+#[allow(dead_code)]
 fn serialize_num_bool<S: serde::Serializer>(val: &i32, s: S) -> Result<S::Ok, S::Error> {
     s.serialize_str(match val {
         0 => "",

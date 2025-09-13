@@ -1,5 +1,7 @@
+pub mod enums;
+pub mod generated;
+pub mod generated_impls;
 pub mod lang;
-pub mod types;
 
 use anyhow::Result;
 use rabex_env::Environment;
