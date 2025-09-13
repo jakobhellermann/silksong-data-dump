@@ -5,9 +5,9 @@ use indexmap::IndexMap;
 use rabex_env::Environment;
 use rabex_env::rabex::objects::ClassId;
 use rabex_env::unity::types::{ResourceManager, TextAsset};
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
 
-#[allow(non_snake_case)]
+/*#[allow(non_snake_case)]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(into = "String")]
 pub struct LocalizedString {
@@ -18,28 +18,7 @@ impl From<LocalizedString> for String {
     fn from(value: LocalizedString) -> Self {
         format!("{}-{}", value.Sheet, value.Key)
     }
-}
-
-impl LocalizedString {
-    pub fn get<'a>(&self, lang: &'a Language) -> &'a str {
-        assert!(!self.Sheet.is_empty());
-        assert!(!self.Key.is_empty());
-        &lang[&self.Sheet.to_ascii_lowercase()][&self.Key]
-    }
-    pub fn try_get<'a>(&self, lang: &'a Language) -> Option<&'a str> {
-        if self.Sheet.is_empty() && self.Key.is_empty() {
-            return None;
-        }
-        Some(&lang[&self.Sheet.to_ascii_lowercase()][&self.Key])
-    }
-}
-
-#[allow(non_snake_case)]
-#[derive(Debug, Deserialize)]
-pub struct LocalizedStringPlural {
-    pub Plural: LocalizedString,
-    pub Single: LocalizedString,
-}
+}*/
 
 pub type Languages = IndexMap<String, Language>;
 pub type Language = IndexMap<String, IndexMap<String, String>>;
