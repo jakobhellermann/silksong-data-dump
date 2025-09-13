@@ -1,0 +1,63 @@
+name,rewardItem,rewardCount,rewardCountAct3,requirements,condition
+Shakra Final Quest,Shakra Ring,1,0,,(ShakraFinalQuestAppear = true AND hasDoubleJump = true)
+Destroy Thread Cores,Heart Piece,1,0,12 Black Thread Core ,
+Skull King,Rosary_Set_Large,1,0,1 Skull King Fragment ,hasWalljump = true
+Save the Fleas Pre,,1,0,,
+Flea Games,,1,0,FleaGamesIsJugglingChampion = true FleaGamesIsDodgingChampion = true FleaGamesIsBouncingChampion = true ,
+Soul Snare Pre,,1,0,,
+Beastfly Hunt,Heart Piece,1,0,1 Beastfly Remains ,(defeatedBoneFlyerGiant = true AND visitedEnclave = true AND defeatedSongGolem = true)
+Save City Merchant,,1,0,,
+Flea Games Pre,,1,0,,(FleaGamesCanStart = true AND hasSuperJump = true)
+Huntress Quest Runt,Longneedle,1,0,15 Enemy Morsel Seared 35 Enemy Morsel Shredded 10 Enemy Morsel Speared ,
+Wood Witch Curse,,1,0,,spinnerDefeated = true
+A Pinsmiths Tools,,1,0,1 Pale_Oil ,
+Steel Sentinel Pt2,Growstone,1,0,,
+Save Sherma,,1,0,,shermaQuestActive = true
+Building Materials (Statue),,60,0,440 Shard Quest Target ,(citadelWoken = true AND fixerBridgeConstructed = true)
+Sprintmaster Race,Heart Piece,1,0,3 Sprintmaster Race Target ,
+Building Materials,,50,0,200 Shard Quest Target ,
+Steel Sentinel,,1,0,3 Steel Sentinal Target ,
+Mossberry Collection Pre,,1,0,,
+Journal,Tool Pouch Pickup,1,0,100 Journal Seen ,
+Sprintmaster Pre,,1,0,,hasSuperJump = true
+Save City Merchant Bridge,,1,0,,cityMerchantCanLeaveForBridge = true
+Deliver to Bone Bottom.,Money Reward,150,180,5 Courier Supplies ,blackThreadWorld = false
+Doctor Curse Cure,,1,0,1 Extractor Machine Pins ,
+Songclave Donation 2,,50,0,500 Rosary Quest Target ,(enclaveLevel > 1 AND enclaveDonation2_Available = true)
+Deliver to Songclave.,Money Reward,360,410,5 Courier Supplies ,(enclaveLevel > 0 AND soulSnareReady = false) OR blackThreadWorld = true
+Extractor Blue,Lifeblood Syringe,1,0,3 Plasmium 1 Extractor ,
+Mossberry Collection 1,,1,0,3 Mossberry ,
+Belltown House Mid,,50,0,400 Rosary Quest Target ,(BelltownHouseState = 1 AND citadelHalfwayComplete = true)
+Crow Feathers Pre,,1,0,,spinnerDefeated = true
+Songclave Donation 1,,50,0,300 Rosary Quest Target ,
+Save Courier Short,,1,0,,
+Deliver to Mask Maker on Mount Fay.,Money Reward,560,650,3 Courier Supplies Mask Maker ,(hasDoubleJump = true AND UnlockedMelodyLift = true)
+Rock Rollers,Crest Socket Unlocker,1,0,3 Rock Roller Item ,visitedGreymoor = true OR visitedShellwood = true
+Save Courier Tall,,1,0,,enclaveLevel > 0 OR GourmandQuestAccepted = true
+Deliver to Pilgrim’s Rest.,Money Reward,180,200,5 Courier Supplies ,blackThreadWorld = false
+Huntress Quest,Longneedle,1,0,15 Enemy Morsel Seared 35 Enemy Morsel Shredded 10 Enemy Morsel Speared ,
+Pilgrim Rags,Rosary_Set_Medium,1,0,12 Pilgrim Rag ,
+Crow Feathers,Tool Kit Pickup,1,0,25 Crow Feather ,spinnerDefeated = true
+Deliver to Styx of Sinner’s Road.,Money Reward,260,290,4 Courier Supplies Slave ,farmer_grewFirstGrub = true
+Roach Killing,Tack,1,0,10 Roach Corpse Item ,
+Shiny Bell Goomba,Rosary_Set_Medium,1,0,8 Silver Bellclapper ,
+Tormented Trobbio,,1,0,,hasSuperJump = true
+Song Knight,,1,0,,songChevalierQuestReady = true
+Extractor Blue Worms,Plasmium Gland,1,0,10 Plasmium Blood 1 Extractor ,
+Ant Trapper,Heart Piece,1,0,1 Ant Trapper Item ,metAntQueenNPC = true
+Save the Fleas,Flea Brew,1,0,5 FleasCollected Target ,
+Pinstress Battle,Pinstress Tool,1,0,,
+Great Gourmand,Pale_Oil,1,0,GourmandGivenStew = true GourmandGivenNectar = true GourmandGivenMeat = true GourmandGivenCoral = true GourmandGivenEgg = true ,
+Deliver to the Survivors’ Camp in the Marrow.,Money Reward,150,180,5 Courier Supplies ,blackThreadWorld = true
+Shell Flowers,Poison Pouch,1,0,6 Shell Flower ,
+Fine Pins,Rosary_Set_Large,1,0,10 Fine Pin ,
+Brolly Get,,1,0,25 Common Spine ,
+Building Materials (Bridge),,40,0,300 Shard Quest Target ,spinnerDefeated = true OR visitedGreymoor = true
+Belltown House Start,,50,0,250 Rosary Quest Target ,(nailUpgrades > 0 AND BelltownRelicDealerGaveRelic = true AND BelltownGreeterMetTimePassed = true)
+Pinstress Battle Pre,,1,0,,(pinstressQuestReady = true AND hasSuperJump = true)
+Broodmother Hunt,Rosary_Set_Large,1,0,1 Broodmother Remains ,(slab_cloak_battle_completed = true AND enclaveLevel > 2)
+Deliver to Fleatopia.,Money Reward,410,480,5 Courier Supplies ,CaravanTroupeLocation = 3
+Soul Snare,,1,0,1 Snare Soul Churchkeeper 1 Snare Soul Bell Hermit 1 Snare Soul Swamp Bug 1 Silk Snare ,
+Mr Mushroom,,1,0,MushroomQuestFound1 = true MushroomQuestFound2 = true MushroomQuestFound3 = true MushroomQuestFound4 = true MushroomQuestFound5 = true MushroomQuestFound6 = true MushroomQuestFound7 = true ,
+Garmond Black Threaded,,1,0,,garmondFinalQuestReady = true
+Song Pilgrim Cloaks,Rosary_Set_Large,1,0,15 Song Pilgrim Cloak ,enclaveLevel > 1
