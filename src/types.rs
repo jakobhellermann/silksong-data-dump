@@ -259,18 +259,37 @@ pub struct QuestTarget {
 pub struct ToolItem {
     #[serde(rename(deserialize = "m_Name"))]
     pub name: String,
+    pub r#type: ToolItemType,
+    pub baseStorageAmount: i32,
     pub damageFlags: ToolDamageFlags,
     pub poisonDamageTicks: i32,
     pub countKey: TypedPPtr<SavedItem>,
     // zapDamageTicks: i32, always 0
     pub replenishResource: ReplenishResources,
-    // replenishUsage: i32, always 0
-    // replenishUsageMultiplier: f32, always 1.0
+    pub replenishUsage: ReplenishUsage,
+    pub replenishUsageMultiplier: f32,
     pub usageOptions: ToolUsageOptions,
+}
+#[derive(Debug, Serialize, Deserialize_repr)]
+#[repr(i32)]
+pub enum ToolItemType {
+    Red,
+    Blue,
+    Yellow,
+    Skill,
+}
+#[derive(Debug, Serialize, Deserialize_repr)]
+#[repr(i32)]
+pub enum ReplenishUsage {
+    Percentage,
+    OneForOne,
+    Custom,
 }
 #[derive(Debug, Deserialize)]
 pub struct ToolUsageOptions {
     pub SilkRequired: i32,
+    pub MaxActive: i32,
+    // pub MaxActiveAlt: i32, always 0
     // ThrowCooldown: f32, always 0.4
     pub UseAltForQuickSling: u8,
 }
