@@ -65,13 +65,26 @@ fn main() -> Result<()> {
                 .deref_read_optional(item.countKey)?
                 .map(|x| x.displayName.get(lang).to_owned())
                 .filter(|name| *name != "Ruined Tool");
+            assert!(matches!(item.replenishUsage, ReplenishUsage::Percentage));
+            assert_eq!(item.replenishUsageMultiplier, 1.0);
+            let replenishCost = if item.baseStorageAmount != 0
+                && !matches!(item.replenishResource, ReplenishResources::None)
+            {
+                format!(
+                    "1/{} * 40 = {:.1}",
+                    item.baseStorageAmount,
+                    1.0 / item.baseStorageAmount as f32 * 40.,
+                )
+            } else {
+                "".to_string()
+            };
             Ok(ToolItemData {
                 name: display_name.unwrap_or(item.name),
+                r#type: item.r#type,
                 damageFlags: item.damageFlags,
                 poisonDamageTicks: item.poisonDamageTicks,
-                replenishResource: item.replenishResource,
                 SilkRequired: item.usageOptions.SilkRequired,
-                UseAltForQuickSling: item.usageOptions.UseAltForQuickSling,
+                replenishCost,
             })
         },
     )?;
@@ -296,12 +309,14 @@ struct DamageTagData {
 
 #[derive(Debug, Serialize)]
 struct ToolItemData {
+    r#type: ToolItemType,
     name: String,
     damageFlags: ToolDamageFlags,
     poisonDamageTicks: i32,
-    replenishResource: ReplenishResources,
+    // replenishResource: ReplenishResources,
+    replenishCost: String,
+    #[serde(serialize_with = "serialize_num_bool")]
     SilkRequired: i32,
-    UseAltForQuickSling: u8,
 }
 
 #[derive(Debug, Serialize)]
@@ -317,4 +332,12 @@ struct QuestData {
     // targetCount: i32,
     requirements: String,
     condition: String,
+}
+
+fn serialize_num_bool<S: serde::Serializer>(val: &i32, s: S) -> Result<S::Ok, S::Error> {
+    s.serialize_str(match val {
+        0 => "",
+        1 => "yes",
+        _ => unreachable!(),
+    })
 }
