@@ -1,0 +1,7 @@
+{
+  "OK": "OK",
+  "SAVE_FAILED_DESC": "再度お試しください。<br>もし問題が解決されない場合は、hollowknightsilksong.com/helpをご参照ください。",
+  "SAVE_CORRUPTED_TITLE": "セーブの読み込みに失敗しました。",
+  "SAVE_CORRUPTED_DESC": "下のオプションから前回のオートセーブを試すこともできます。",
+  "SAVE_FAILED_TITLE": "セーブの書き込みに失敗しました。"
+}

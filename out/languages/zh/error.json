@@ -1,0 +1,7 @@
+{
+  "OK": "确定",
+  "SAVE_FAILED_DESC": "请再次尝试保存。如果问题仍未解决，请访问 hollowknightsilksong.com/help 获取技术支持。",
+  "SAVE_CORRUPTED_TITLE": "无法读取存档文件。",
+  "SAVE_CORRUPTED_DESC": "您可以通过下方选项尝试恢复之前的自动存档。",
+  "SAVE_FAILED_TITLE": "无法保存进度。"
+}

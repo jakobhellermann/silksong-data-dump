@@ -1,0 +1,7 @@
+{
+  "OK": "OK",
+  "SAVE_FAILED_DESC": "Bitte erneut versuchen. Wenn das Problem weiterhin auftritt, erhältst du auf hollowknightsilksong.com/help weitere Infos.",
+  "SAVE_CORRUPTED_TITLE": "Speicherstand konnte nicht geladen werden.",
+  "SAVE_CORRUPTED_DESC": "Du kannst versuchen, mit der Option unten einen früheren automatischen Speicherstand wiederherzustellen.",
+  "SAVE_FAILED_TITLE": "Speicherstand konnte nicht erstellt werden."
+}

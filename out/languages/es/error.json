@@ -1,0 +1,7 @@
+{
+  "OK": "Aceptar",
+  "SAVE_FAILED_DESC": "Vuelve a intentarlo. Si el problema persiste, visita hollowknightsilksong.com/help para obtener más información.",
+  "SAVE_CORRUPTED_TITLE": "Imposible leer el archivo guardado.",
+  "SAVE_CORRUPTED_DESC": "Puedes intentar restaurar un archivo guardado anterior con la opción de abajo.",
+  "SAVE_FAILED_TITLE": "No se ha podido guardar."
+}

@@ -1,0 +1,7 @@
+name,damageAmount,damageCooldownTimer,delayPerHit,isToolDamage,nailElement,specialDamageType,startDelay,totalHitLimit
+Zap,5,,0.3,0,None,Lightning,0.3,1
+Poison,1,,1.0,1,Poison,None,1.0,1
+Dust Cloud,2,,0.5,1,None,None,0.0,0
+Hero Acid Damage,1,,0.0,0,None,None,0.7,1
+Poison Dust Cloud,3,,0.5,1,Poison,None,0.0,0
+Hero FrostWater Damage,1,0.8s,0.0,0,None,Frost,0.3,0

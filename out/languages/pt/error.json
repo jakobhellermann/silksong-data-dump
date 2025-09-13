@@ -1,0 +1,7 @@
+{
+  "OK": "OK",
+  "SAVE_FAILED_DESC": "Tente novamente. Se o problema persistir, visite hollowknightsilksong.com/help para mais informações.",
+  "SAVE_CORRUPTED_TITLE": "Não foi possível ler o arquivo de salvamento.",
+  "SAVE_CORRUPTED_DESC": "Você pode tentar restaurar um salvamento automático anterior usando a opção abaixo.",
+  "SAVE_FAILED_TITLE": "Não foi possível gravar o salvamento."
+}

@@ -1,0 +1,7 @@
+{
+  "OK": "OK",
+  "SAVE_FAILED_DESC": "Veuillez réessayer. Si le problème persiste, veuillez consulter hollowknightsilksong.com/help pour plus d’informations.",
+  "SAVE_CORRUPTED_TITLE": "Le chargement de la sauvegarde a échoué.",
+  "SAVE_CORRUPTED_DESC": "Vous pouvez essayer de restaurer une sauvegarde automatique précédente en utilisant l’option ci-dessous.",
+  "SAVE_FAILED_TITLE": "La sauvegarde n’a pas pu être enregistrée."
+}

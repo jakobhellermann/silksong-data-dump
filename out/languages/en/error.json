@@ -1,0 +1,7 @@
+{
+  "OK": "OK",
+  "SAVE_FAILED_DESC": "Please try again. If the issue persists, please visit hollowknightsilksong.com/help for more info.",
+  "SAVE_CORRUPTED_TITLE": "Save file can not be read.",
+  "SAVE_CORRUPTED_DESC": "You may try restoring a previous auto save using the option below.",
+  "SAVE_FAILED_TITLE": "Save could not be written."
+}

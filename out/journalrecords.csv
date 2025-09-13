@@ -1,0 +1,238 @@
+name,killsRequired,recordType,requiredType
+Winged Lifeseed,8,Enemy,Required
+Dregwheel,8,Enemy,Required
+Clawmaiden,10,Enemy,Required
+Aknid,15,Enemy,Required
+Pilgrim Hornfly,15,Enemy,Required
+Swamp Squit,30,Enemy,Required
+Mite,30,Enemy,Required
+Thread Raker,15,Enemy,Required
+Drapelord,4,Enemy,Required
+Pilgrim Guide,15,Enemy,Required
+Wood Wasp,12,Enemy,Required
+Crustcrawler,10,Enemy,Required
+Driznarga,14,Enemy,Required
+Roachfeeder,20,Enemy,Required
+Skull Tyrant,1,Enemy,Required
+Pilgrim Hiker,10,Enemy,Required
+Imoba,4,Enemy,Required
+Cogwork Cleanser,12,Enemy,Required
+Widow,1,Enemy,Required
+Spinebeak Kai,10,Enemy,Required
+Choir Bellbearer,25,Enemy,Required
+Giant Drapemite,6,Enemy,Required
+Underpoke,25,Enemy,Required
+Winged Furm,12,Enemy,Required
+Reed,30,Enemy,Required
+Moss Mother,3,Enemy,Required
+Overgrown Pilgrim,20,Enemy,Required
+Skull Brute,15,Enemy,Required
+Fertid,25,Enemy,Required
+Rhinogrund,2,Enemy,Required
+Cogwork Spine,10,Enemy,Required
+Mothleaf Lagnia,25,Enemy,Required
+Skrill,10,Enemy,Required
+Mossgrub,25,Enemy,Required
+Kai,10,Enemy,Required
+Pilgrim Pouncer,35,Enemy,Required
+Tormented Trobbio,1,Enemy,Required
+Lavalug,12,Enemy,Required
+Penitent,8,Enemy,Required
+Gromling,25,Enemy,Required
+Flintflame Flyer,10,Enemy,Required
+Hardbone Elder,10,Enemy,Required
+Drapefly,30,Enemy,Required
+Cogworker,15,Enemy,Required
+Pilgrim Bellbearer,10,Enemy,Required
+Crust King Khann,1,Enemy,Required
+Leaf Glider,12,Enemy,Required
+Pendragor,10,Enemy,Required
+Skarrwing,30,Enemy,Required
+Undersweep,10,Enemy,Required
+Pinstress,1,Enemy,Required
+Pilgrim Groveller,35,Enemy,Required
+Cragglite,3,Enemy,Required
+Groal the Great,1,Enemy,Required
+Escalion,10,Enemy,Required
+Sandcarver,40,Enemy,Required
+Plasmidas,6,Enemy,Required
+Pollenica,10,Enemy,Required
+Covetous Pilgrim,2,Enemy,Required
+Muckmaggot,80,Enemy,Required
+Wardenfly,8,Enemy,Required
+Nyleth,1,Enemy,Required
+Mnemonord,3,Enemy,Required
+Yuma,16,Enemy,Required
+Voltvyrm,1,Enemy,Required
+Last Claw,6,Enemy,Required
+Huge Flea,1,Enemy,Required
+Gargant Gloom,4,Enemy,Required
+Grand Reed,12,Enemy,Required
+Grand Mother Silk,1,Enemy,Required
+Vaultborn,20,Enemy,Required
+Phacia,25,Enemy,Required
+Shrine Guardian Seth,1,Enemy,Required
+Steelspine Kai,15,Enemy,Required
+Savage Beastfly,2,Enemy,Required
+Massive Mossgrub,3,Enemy,Required
+Splinterhorn,10,Enemy,Required
+Bell Eater,1,Enemy,Required
+The Unravelled,1,Enemy,Required
+Mossmir,20,Enemy,Required
+Skarrsinger Karmelita,1,Enemy,Required
+Marrowmaw,8,Enemy,Required
+Great Conchfly,2,Enemy,Required
+Plasmified Zango,1,Enemy,Required
+Lavalarga,8,Enemy,Required
+Flintbeetle,3,Enemy,NotRequired
+Cogwork Crawler,15,Enemy,Required
+Servitor Boran,5,Enemy,Required
+Skarr Scout,20,Enemy,Required
+Winged Pilgrim,25,Enemy,Required
+Craw,25,Enemy,Required
+Fluttermite,25,Enemy,Required
+Miremite,20,Enemy,Required
+Shardillard,3,Enemy,Required
+Dreg Husk,8,Enemy,Required
+Kakri,10,Enemy,Required
+Burning Bug,8,Enemy,Required
+Kindanir,10,Enemy,Required
+Wisp,15,Enemy,Required
+Wingmould,10,Enemy,Required
+Envoy,20,Enemy,Required
+Skullwing,15,Enemy,Required
+Servitor Ignim,8,Enemy,Required
+Yago,12,Enemy,Required
+Drapemite,20,Enemy,Required
+Cogwork Clapper,1,Enemy,Required
+Karaka,10,Enemy,Required
+Roachkeeper,10,Enemy,Required
+Roachcatcher,20,Enemy,Required
+Cogwork Hauler,12,Enemy,Required
+Lost Garmond,1,Enemy,NotRequired
+Puny Penitent,6,Enemy,Required
+Stilkin Trapper,12,Enemy,Required
+Vicious Caranid,15,Enemy,Required
+Winged Pilgrim Bellbearer,10,Enemy,Required
+Spit Squit,20,Enemy,Required
+Cogwork Dancers,1,Enemy,Required
+Clover Dancers,1,Enemy,Required
+Ductsucker,6,Enemy,Required
+Flapping Fertid,20,Enemy,Required
+Surgeon,3,Enemy,Required
+Underloft,25,Enemy,Required
+Caranid,25,Enemy,Required
+Choir Hornhead,15,Enemy,Required
+Leaf Roller,10,Enemy,Required
+Disgraced Chef Lugoli,1,Enemy,Required
+Cogwork Defender,8,Enemy,Required
+Squatcraw Juror,8,Enemy,Required
+Snitchfly,4,Enemy,Required
+Judge,15,Enemy,Required
+Freshfly,20,Enemy,Required
+Nuphar,6,Enemy,Required
+Garpid,30,Enemy,Required
+Shakra,1,Enemy,NotRequired
+Shadow Creeper,16,Enemy,Required
+Wraith,10,Enemy,Required
+Bell Beast,1,Enemy,Required
+Yumama ,3,Enemy,Required
+Slubberlug,12,Enemy,Required
+Muckroach,20,Enemy,Required
+Craggler,1,Enemy,Required
+Skarr Stalker,15,Enemy,Required
+Lace,2,Enemy,Required
+Gurr the Outcast,1,Enemy,Required
+Crustcrag,6,Enemy,Required
+Pondcatcher,20,Enemy,Required
+Maestro,6,Enemy,Required
+Mnemonid,10,Enemy,Required
+Summoned Saviour,1,Enemy,RequiredSteelSoul
+Sister Splinter,1,Enemy,Required
+Choir Elder,6,Enemy,Required
+Underworker,15,Enemy,Required
+Moorwing,1,Enemy,Required
+First Sinner,1,Enemy,Required
+Driftlin,20,Enemy,Required
+Choir Pouncer,30,Enemy,Required
+Silk Snipper,25,Enemy,Required
+Conchfly,8,Enemy,Required
+Lampbearer,20,Enemy,Required
+Mortician,10,Enemy,Required
+Undercrank,4,Enemy,Required
+Palestag,1,Enemy,NotRequired
+Broodmother,1,Enemy,Required
+Skarrlid,25,Enemy,Required
+Choir Clapper,3,Enemy,Required
+Grom,10,Enemy,Required
+Underscrub,20,Enemy,Required
+Guardfly,10,Enemy,Required
+Gloomsac,15,Enemy,Required
+Pokenabbin,16,Enemy,Required
+Minister,15,Enemy,Required
+Squatcraw,15,Enemy,Required
+Barnak,8,Enemy,Required
+Tarmite,10,Enemy,Required
+Forebrothers Signis & Gron,1,Enemy,Required
+Pilgrim Hulk,10,Enemy,Required
+Roachserver,10,Enemy,Required
+Last Judge,1,Enemy,Required
+Pond Skipper,15,Enemy,Required
+Coral Furm,15,Enemy,Required
+Memoria,2,Enemy,Required
+Kilik,25,Enemy,Required
+Void Tendrils,1,Enemy,Required
+Lost Lace,1,Enemy,NotRequired
+Shadow Charger,6,Enemy,Required
+Skull Scuttler,35,Enemy,Required
+Second Sentinel,1,Enemy,Required
+Fourth Chorus,1,Enemy,Required
+Cloverstag,10,Enemy,Required
+Driznit,25,Enemy,Required
+Tallcraw Juror,10,Enemy,Required
+Cogwork Choirbug,20,Enemy,Required
+Void Mass,8,Enemy,Required
+Corrcrust Karaka,6,Enemy,Required
+Deep Diver,5,Enemy,Required
+Splinterbark,10,Enemy,Required
+Dreg Catcher,20,Enemy,Required
+Stilkin,15,Enemy,Required
+Furm,25,Enemy,Required
+Gahlia,20,Enemy,Required
+Father of the Flame,1,Enemy,Required
+Flintstone Flyer,25,Enemy,Required
+Splinter,12,Enemy,Required
+Hoker,15,Enemy,Required
+Vaultkeeper,10,Enemy,Required
+Tallcraw,20,Enemy,Required
+Scrollreader,15,Enemy,Required
+Alita,6,Enemy,Required
+Shellwood Gnat,15,Enemy,Required
+Pharlid Diver,10,Enemy,Required
+Scabfly,15,Enemy,Required
+Pharlid,20,Enemy,Required
+Hardbone Hopper,20,Enemy,Required
+Mawling,30,Enemy,Required
+Spear Skarr ,10,Enemy,Required
+Watcher at the Edge,1,Enemy,Required
+Craw Juror,15,Enemy,Required
+Skarrgard,2,Enemy,Required
+Bloatroach,12,Enemy,Required
+Cogwork Underfly,25,Enemy,Required
+Choir Flyer,20,Enemy,Required
+Squirrm,4,Enemy,Required
+Beastfly,30,Enemy,Required
+Verdanir,10,Enemy,Required
+Phantom,1,Enemy,Required
+Karak Gor,8,Enemy,Required
+Mitemother,10,Enemy,Required
+Pendra,10,Enemy,Required
+Smokerock Sifter,10,Enemy,Required
+Choristor,25,Enemy,Required
+Brushflit,15,Enemy,Required
+Plasmid,15,Enemy,Required
+Smelt Shoveller,25,Enemy,Required
+Crawfather,1,Enemy,Required
+Garmond & Zaza,1,Enemy,NotRequired
+Elder Pilgrim,5,Enemy,Required
+Trobbio,1,Enemy,Required
