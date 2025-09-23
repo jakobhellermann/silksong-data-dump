@@ -31,7 +31,7 @@ Belltown House Mid,,50,0,400 Rosary Quest Target ,(BelltownHouseState = 1 AND ci
 Crow Feathers Pre,,1,0,,spinnerDefeated = true
 Songclave Donation 1,,50,0,300 Rosary Quest Target ,
 Save Courier Short,,1,0,,
-Deliver to Mask Maker on Mount Fay.,Money Reward,560,650,3 Courier Supplies Mask Maker ,(hasDoubleJump = true AND UnlockedMelodyLift = true)
+Deliver to Mask Maker on Mount Fay.,Money Reward,560,650,3 Courier Supplies Mask Maker ,(hasDoubleJump = true AND UnlockedMelodyLift = true AND SlaveDeliveryQuestCompleted = true)
 Rock Rollers,Crest Socket Unlocker,1,0,3 Rock Roller Item ,visitedGreymoor = true OR visitedShellwood = true
 Save Courier Tall,,1,0,,enclaveLevel > 0 OR GourmandQuestAccepted = true
 Deliver to Pilgrim’s Rest.,Money Reward,180,200,5 Courier Supplies ,blackThreadWorld = false

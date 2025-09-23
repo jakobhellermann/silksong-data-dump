@@ -13,7 +13,8 @@ use silksong_data_dump::generated::*;
 use silksong_data_dump::lang;
 
 fn main() -> Result<()> {
-    let env = silksong_data_dump::detect_game()?.context("Couldn't find silksong game files")?;
+    let mut env =
+        silksong_data_dump::detect_game()?.context("Couldn't find silksong game files")?;
 
     let out = Path::new("out");
     std::fs::create_dir_all(out)?;
@@ -239,6 +240,8 @@ fn main() -> Result<()> {
             })
         },
     )?;
+
+    dbg!(env.loaded_files().collect::<Vec<_>>());
 
     Ok(())
 }
