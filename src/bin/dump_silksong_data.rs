@@ -274,7 +274,6 @@ where
     let name = Path::new(name);
     let path = data_assets.join(name).with_extension("bundle");
     let file = env.load_addressables_bundle_content(path)?;
-    let file = SerializedFileHandle::new(env, &file.0, &file.1);
     let mut writer = csv::Writer::from_writer(File::create(
         out.join(name.file_name().unwrap()).with_extension("csv"),
     )?);
